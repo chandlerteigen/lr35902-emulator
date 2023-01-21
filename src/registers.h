@@ -2,11 +2,9 @@
 Programmer: Chandler Teigen
 Date Created: 1/20/2023
 Date Modified: 1/20/2023
-Description:
-
-
 */
-
+#ifndef REGISTERS_H
+#define REGISTERS_H
 #include <stdint.h>
 
 typedef struct registers
@@ -51,3 +49,5 @@ typedef struct registers
         };
     };
 } registers;
+
+#endif
