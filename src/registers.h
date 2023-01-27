@@ -5,7 +5,7 @@ Date Modified: 1/20/2023
 */
 #ifndef REGISTERS_H
 #define REGISTERS_H
-#include <stduint.h>
+#include <stdint.h>
 
 typedef struct registers
 {
