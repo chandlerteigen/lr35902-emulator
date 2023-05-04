@@ -17,7 +17,7 @@ int decode(char *p_instruction, registers *p_registers, char *p_memory)
         // Cycles: 4
         // Affected Registers: - - - -
         case 0x00:
-            cycles = 1; 
+            cycles = 4; 
             break;
     }
 
