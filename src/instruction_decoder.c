@@ -5,7 +5,7 @@ Date Modified: 5/1/2023
 */
 #include "instruction_decoder.h"
 
-int decode(char *p_instruction, registers *p_registers, char *p_memory)
+int decode(char* const p_instruction, registers* const p_registers, char* const p_memory)
 {
     char opcode = *p_instruction;
     int cycles = 0;
