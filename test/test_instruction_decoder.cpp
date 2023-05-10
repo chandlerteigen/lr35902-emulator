@@ -17,9 +17,10 @@ TEST(test_instruction_decoder, test_instructions)
     char instruction[] = {'\0'};
 
     char* const p_memory = 0;
+    char* const p_stack = 0;
     int cycles = 0;
     
-    cycles = decode(instruction, &reg, p_memory);
+    cycles = decode(instruction, &reg, p_memory, p_stack);
 
     // all register values should remain the same
     EXPECT_EQ(reg.af, 0);

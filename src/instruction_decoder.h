@@ -9,6 +9,6 @@ Date Modified: 5/1/2023
 #include "registers.h"  
 
 
-int decode(char* const p_instruction, registers* const p_registers, char* const p_memory);
+int decode(char* const p_instruction, registers* const p_registers, char* const p_memory, char* const p_stack);
 
 #endif
