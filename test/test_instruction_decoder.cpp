@@ -4,6 +4,7 @@ Date Created: 5/1/2023
 Date Modified: 5/1/2023
 */
 #include <gtest/gtest.h>
+#include <stdint.h>
 extern "C"
 {
 #include "../src/registers.h"
@@ -14,10 +15,10 @@ TEST(test_instruction_decoder, test_instructions)
 {
     registers reg = {0};
 
-    char instruction[] = {'\0'};
+    uint8_t instruction[] = {'\0'};
 
-    char* const p_memory = 0;
-    char* const p_stack = 0;
+    uint8_t* const p_memory = 0;
+    uint8_t* const p_stack = 0;
     int cycles = 0;
     
     cycles = decode(instruction, &reg, p_memory, p_stack);
