@@ -6,6 +6,7 @@ Date Modified: 1/20/2023
 #ifndef REGISTERS_H
 #define REGISTERS_H
 #include <stdint.h>
+#include <stdbool.h>
 
 typedef struct registers
 {
@@ -49,5 +50,7 @@ typedef struct registers
         };
     };
 } registers;
+
+bool compute_add_carry(int bit_position, uint32_t addend1, uint32_t addend2, uint32_t sum);
 
 #endif

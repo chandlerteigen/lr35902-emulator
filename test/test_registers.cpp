@@ -4,7 +4,11 @@ Date Created: 5/1/2023
 Date Modified: 5/1/2023
 */
 #include <gtest/gtest.h>
+#include <stdbool.h>
+extern "C"
+{
 #include "../src/registers.h"
+}
 
 TEST(test_registers, test_type_punning)
 {
@@ -143,4 +147,21 @@ TEST(test_registers, test_type_punning)
     EXPECT_EQ(reg.hl, 0);
     EXPECT_EQ(reg.h, 0);
     EXPECT_EQ(reg.l, 0);
+}
+
+TEST(test_registers, test_compute_add_carry)
+{
+    int number_of_tests = 5;
+    uint32_t addend1[] = { 0, 1, 1, 8, 7 };
+    uint32_t addend2[] = { 0, 1, 1, 16, 9 };
+    uint32_t sum[] = {0, 2, 2, 24, 16};
+    int bit_position[] = { 3, 0, 1, 3, 3 };
+    bool expected_carry[] = { false, true, false, false, true };
+    bool carry = false;
+
+    for(int i = 0; i < number_of_tests; i++)
+    {
+        carry = compute_add_carry(bit_position[i], addend1[i], addend2[i], sum[i]);
+        EXPECT_EQ(carry, false);
+    }
 }
