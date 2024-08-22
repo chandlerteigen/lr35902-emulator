@@ -10,6 +10,35 @@ extern "C"
 #include "../src/registers.h"
 }
 
+class test_compute_add_carry: public ::testing::TestWithParam<
+    std::tuple<uint32_t, uint32_t, uint32_t, int, bool>>
+{};
+
+TEST_P(test_compute_add_carry, compute_add_carry)
+{
+    auto params = GetParam();
+    const uint32_t addend1 = std::get<0>(params);
+    const uint32_t addend2 = std::get<1>(params);
+    const uint32_t sum = std::get<2>(params);
+    const int bit_position = std::get<3>(params);
+    const bool expected_carry = std::get<4>(params);
+
+    bool carry = false;
+    carry = compute_add_carry(bit_position, addend1, addend2, sum);
+
+    EXPECT_EQ(carry, expected_carry);
+}
+
+INSTANTIATE_TEST_CASE_P(compute_add_carry_test_cases, 
+    test_compute_add_carry,
+    testing::Values(
+        std::make_tuple(0, 0, 0, 3, false),
+        std::make_tuple(1, 1, 2, 0, true),
+        std::make_tuple(1, 1, 2, 1, false),
+        std::make_tuple(8, 16, 24, 3, false),
+        std::make_tuple(7, 9, 16, 3, true)
+    ));
+
 TEST(test_registers, test_type_punning)
 {
     registers reg = {0};
@@ -147,21 +176,4 @@ TEST(test_registers, test_type_punning)
     EXPECT_EQ(reg.hl, 0);
     EXPECT_EQ(reg.h, 0);
     EXPECT_EQ(reg.l, 0);
-}
-
-TEST(test_registers, test_compute_add_carry)
-{
-    int number_of_tests = 5;
-    uint32_t addend1[] = { 0, 1, 1, 8, 7 };
-    uint32_t addend2[] = { 0, 1, 1, 16, 9 };
-    uint32_t sum[] = {0, 2, 2, 24, 16};
-    int bit_position[] = { 3, 0, 1, 3, 3 };
-    bool expected_carry[] = { false, true, false, false, true };
-    bool carry = false;
-
-    for(int i = 0; i < number_of_tests; i++)
-    {
-        carry = compute_add_carry(bit_position[i], addend1[i], addend2[i], sum[i]);
-        EXPECT_EQ(carry, false);
-    }
 }
