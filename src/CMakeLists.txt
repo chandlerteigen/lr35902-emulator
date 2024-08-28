@@ -1,5 +1,6 @@
 set(sources
     instruction_decoder.c
+    registers.c
 )
 
 set(headers
