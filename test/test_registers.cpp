@@ -41,6 +41,38 @@ INSTANTIATE_TEST_CASE_P(test_set_bit_8bit_test_cases,
         std::make_tuple(127, true, 6, 127)
     ));
 
+class flag_test_16bit: public ::testing::TestWithParam<
+    std::tuple<uint16_t, bool, int, uint16_t>>
+{};
+
+TEST_P(flag_test_16bit, test_set_bit_16bit)
+{
+    auto params = GetParam();
+    uint16_t reg = std::get<0>(params);
+    const bool bit_val = std::get<1>(params);
+    const int bit_pos = std::get<2>(params);
+    const uint16_t result = std::get<3>(params);
+
+    set_bit_16bit(&reg, bit_val, bit_pos);
+
+    EXPECT_EQ(reg, result);
+}
+
+INSTANTIATE_TEST_CASE_P(test_set_bit_16bit_test_cases, 
+    flag_test_16bit,
+    testing::Values(
+        std::make_tuple(0, true, 0, 1),
+        std::make_tuple(0, false, 0, 0),
+        std::make_tuple(0, true, 1, 2),
+        std::make_tuple(8, false, 3, 0),
+        std::make_tuple(127, false, 3, 119),
+        std::make_tuple(127, true, 5, 127),
+        std::make_tuple(127, true, 6, 127),
+        std::make_tuple(1023, false, 3, 1015),
+        std::make_tuple(1023, true, 5, 1023),
+        std::make_tuple(1023, true, 10, 2047)
+    ));
+
 class add_carry_test: public ::testing::TestWithParam<
     std::tuple<uint32_t, uint32_t, uint32_t, int, bool>>
 {};
