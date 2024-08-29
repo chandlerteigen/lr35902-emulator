@@ -8,6 +8,12 @@ Date Modified: 1/20/2023
 #include <stdint.h>
 #include <stdbool.h>
 
+#define Z_FLAG_POS 7
+#define N_FLAG_POS 6
+#define H_FLAG_POS 5
+#define C_FLAG_POS 4
+
+
 typedef struct registers
 {
     union
@@ -50,6 +56,10 @@ typedef struct registers
         };
     };
 } registers;
+
+void set_bit_8bit(uint8_t *dest, bool bit_val, int position);
+
+void set_bit_16bit(uint16_t *dest, bool bit_val, int position);
 
 bool compute_add_carry(int bit_position, uint32_t addend1, uint32_t addend2, uint32_t sum);
 
