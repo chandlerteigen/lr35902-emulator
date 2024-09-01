@@ -13,6 +13,11 @@ Date Modified: 1/20/2023
 #define H_FLAG_POS 5
 #define C_FLAG_POS 4
 
+#define Z_FLAG_VAL (uint8_t)128 
+#define N_FLAG_VAL (uint8_t)64
+#define H_FLAG_VAL (uint8_t)32
+#define C_FLAG_VAL (uint8_t)16
+
 
 typedef struct registers
 {
