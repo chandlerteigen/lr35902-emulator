@@ -1,6 +1,7 @@
 set(sources
     test_registers.cpp
     test_instruction_decoder.cpp
+    test_alu.cpp
 )
 
 add_executable(lr35902_emulator_tests ${sources})
