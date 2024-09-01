@@ -53,3 +53,5 @@ dkms.conf
 
 #ignore build directory
 /build
+
+/.vscode
