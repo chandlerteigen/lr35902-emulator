@@ -20,7 +20,11 @@ Date Modified: 1/20/2023
 
 
 typedef struct registers
-{
+{   
+    uint8_t *stack_pointer;
+
+    uint8_t *program_counter;
+
     union
     {
         uint16_t af;
