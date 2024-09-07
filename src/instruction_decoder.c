@@ -59,7 +59,7 @@ int decode(registers* const p_registers, uint8_t* const p_memory)
         // ADD A, [HL] - 1b, 8c, Z0HC
         case 0x86:
             uint8_t addend = *(p_memory + p_registers->hl);
-            add8(p_registers, p_registers->l);
+            add8(p_registers, addend);
             cycles = 8;
             bytes = 1;  
             break;
