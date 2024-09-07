@@ -69,7 +69,7 @@ int decode(registers* const p_registers, uint8_t* const p_memory)
             cycles = 4;
             bytes = 1;  
             break;
-        // ADD A, B - 1b, 4c, Z0HC
+        // ADC A, B - 1b, 4c, Z0HC
         case 0x88:
             add8(p_registers, p_registers->b + carry_flag);
             cycles = 4;
