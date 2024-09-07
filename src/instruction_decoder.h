@@ -10,6 +10,6 @@ Date Modified: 5/1/2023
 #include "registers.h" 
 
 
-int decode(uint8_t* const p_instruction, registers* const p_registers, uint8_t* const p_memory, uint8_t* const p_stack);
+int decode(registers* const p_registers, uint8_t* const p_memory);
 
 #endif
