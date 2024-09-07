@@ -75,43 +75,43 @@ int decode(registers* const p_registers, uint8_t* const p_memory)
             cycles = 4;
             bytes = 1;  
             break;
-        // ADD A, C - 1b, 4c, Z0HC
+        // ADC A, C - 1b, 4c, Z0HC
         case 0x89:
             add8(p_registers, p_registers->c + carry_flag);
             cycles = 4;
             bytes = 1;  
             break;
-        // ADD A, D - 1b, 4c, Z0HC
+        // ADC A, D - 1b, 4c, Z0HC
         case 0x8A:
             add8(p_registers, p_registers->d + carry_flag);
             cycles = 4;
             bytes = 1;  
             break;
-        // ADD A, E - 1b, 4c, Z0HC
+        // ADC A, E - 1b, 4c, Z0HC
         case 0x8B:
             add8(p_registers, p_registers->e + carry_flag);
             cycles = 4;
             bytes = 1;  
             break;
-        // ADD A, H - 1b, 4c, Z0HC
+        // ADC A, H - 1b, 4c, Z0HC
         case 0x8C:
             add8(p_registers, p_registers->h + carry_flag);
             cycles = 4;
             bytes = 1;  
             break;
-        // ADD A, L - 1b, 4c, Z0HC
+        // ADC A, L - 1b, 4c, Z0HC
         case 0x8D:
             add8(p_registers, p_registers->l + carry_flag);
             cycles = 4;
             bytes = 1;  
             break;
-        // ADD A, [HL] - 1b, 8c, Z0HC
+        // ADC A, [HL] - 1b, 8c, Z0HC
         case 0x8E:
             add8(p_registers, *(p_memory + p_registers->hl) + carry_flag);
             cycles = 8;
             bytes = 1;  
             break;
-        // ADD A, A - 1b, 4c, Z0HC
+        // ADC A, A - 1b, 4c, Z0HC
         case 0x8F:
             add8(p_registers, p_registers->a + carry_flag);
             cycles = 4;
