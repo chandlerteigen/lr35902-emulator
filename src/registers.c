@@ -1,8 +1,5 @@
-/*
-Programmer: Chandler Teigen
-Date Created: 8/22/2024
-Date Modified: 8/22/2024
-*/
+// Implements functions that compute and manipulate the values stored
+// in registers.
 
 #include "registers.h"
 #include <math.h>

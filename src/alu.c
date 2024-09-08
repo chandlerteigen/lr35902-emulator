@@ -1,3 +1,6 @@
+// Implements functions that are related to the duties of the
+// CPU's ALU.
+
 #include "alu.h"
 
 void add8(registers *p_registers, uint8_t addend)

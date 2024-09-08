@@ -1,8 +1,6 @@
-/*
-Programmer: Chandler Teigen
-Date Created: 5/1/2023
-Date Modified: 5/1/2023
-*/
+// Tests for the register manipulation functions and
+// type punning of the registers.
+
 #include <gtest/gtest.h>
 #include <stdbool.h>
 extern "C"
@@ -10,11 +8,10 @@ extern "C"
 #include "../src/registers.h"
 }
 
-//void set_bit_8bit(uint8_t *dest, bool bit_val, int position);
-
-class flag_test: public ::testing::TestWithParam<
-    std::tuple<uint8_t, bool, int, uint8_t>>
-{};
+class flag_test : public ::testing::TestWithParam<
+                      std::tuple<uint8_t, bool, int, uint8_t>>
+{
+};
 
 TEST_P(flag_test, test_set_bit_8bit)
 {
@@ -29,21 +26,21 @@ TEST_P(flag_test, test_set_bit_8bit)
     EXPECT_EQ(reg, result);
 }
 
-INSTANTIATE_TEST_CASE_P(test_set_bit_8bit_test_cases, 
-    flag_test,
-    testing::Values(
-        std::make_tuple(0, true, 0, 1),
-        std::make_tuple(0, false, 0, 0),
-        std::make_tuple(0, true, 1, 2),
-        std::make_tuple(8, false, 3, 0),
-        std::make_tuple(127, false, 3, 119),
-        std::make_tuple(127, true, 5, 127),
-        std::make_tuple(127, true, 6, 127)
-    ));
+INSTANTIATE_TEST_CASE_P(test_set_bit_8bit_test_cases,
+                        flag_test,
+                        testing::Values(
+                            std::make_tuple(0, true, 0, 1),
+                            std::make_tuple(0, false, 0, 0),
+                            std::make_tuple(0, true, 1, 2),
+                            std::make_tuple(8, false, 3, 0),
+                            std::make_tuple(127, false, 3, 119),
+                            std::make_tuple(127, true, 5, 127),
+                            std::make_tuple(127, true, 6, 127)));
 
-class flag_test_16bit: public ::testing::TestWithParam<
-    std::tuple<uint16_t, bool, int, uint16_t>>
-{};
+class flag_test_16bit : public ::testing::TestWithParam<
+                            std::tuple<uint16_t, bool, int, uint16_t>>
+{
+};
 
 TEST_P(flag_test_16bit, test_set_bit_16bit)
 {
@@ -58,24 +55,24 @@ TEST_P(flag_test_16bit, test_set_bit_16bit)
     EXPECT_EQ(reg, result);
 }
 
-INSTANTIATE_TEST_CASE_P(test_set_bit_16bit_test_cases, 
-    flag_test_16bit,
-    testing::Values(
-        std::make_tuple(0, true, 0, 1),
-        std::make_tuple(0, false, 0, 0),
-        std::make_tuple(0, true, 1, 2),
-        std::make_tuple(8, false, 3, 0),
-        std::make_tuple(127, false, 3, 119),
-        std::make_tuple(127, true, 5, 127),
-        std::make_tuple(127, true, 6, 127),
-        std::make_tuple(1023, false, 3, 1015),
-        std::make_tuple(1023, true, 5, 1023),
-        std::make_tuple(1023, true, 10, 2047)
-    ));
+INSTANTIATE_TEST_CASE_P(test_set_bit_16bit_test_cases,
+                        flag_test_16bit,
+                        testing::Values(
+                            std::make_tuple(0, true, 0, 1),
+                            std::make_tuple(0, false, 0, 0),
+                            std::make_tuple(0, true, 1, 2),
+                            std::make_tuple(8, false, 3, 0),
+                            std::make_tuple(127, false, 3, 119),
+                            std::make_tuple(127, true, 5, 127),
+                            std::make_tuple(127, true, 6, 127),
+                            std::make_tuple(1023, false, 3, 1015),
+                            std::make_tuple(1023, true, 5, 1023),
+                            std::make_tuple(1023, true, 10, 2047)));
 
-class add_carry_test: public ::testing::TestWithParam<
-    std::tuple<uint32_t, uint32_t, uint32_t, int, bool>>
-{};
+class add_carry_test : public ::testing::TestWithParam<
+                           std::tuple<uint32_t, uint32_t, uint32_t, int, bool>>
+{
+};
 
 TEST_P(add_carry_test, test_compute_add_carry)
 {
@@ -92,15 +89,14 @@ TEST_P(add_carry_test, test_compute_add_carry)
     EXPECT_EQ(carry, expected_carry);
 }
 
-INSTANTIATE_TEST_CASE_P(compute_add_carry_test_cases, 
-    add_carry_test,
-    testing::Values(
-        std::make_tuple(0, 0, 0, 3, false),
-        std::make_tuple(1, 1, 2, 0, true),
-        std::make_tuple(1, 1, 2, 1, false),
-        std::make_tuple(8, 16, 24, 3, false),
-        std::make_tuple(7, 9, 16, 3, true)
-    ));
+INSTANTIATE_TEST_CASE_P(compute_add_carry_test_cases,
+                        add_carry_test,
+                        testing::Values(
+                            std::make_tuple(0, 0, 0, 3, false),
+                            std::make_tuple(1, 1, 2, 0, true),
+                            std::make_tuple(1, 1, 2, 1, false),
+                            std::make_tuple(8, 16, 24, 3, false),
+                            std::make_tuple(7, 9, 16, 3, true)));
 
 TEST(test_registers, test_type_punning)
 {
