@@ -1,3 +1,5 @@
+// Tests for the ALU functions from alu.c
+
 #include <gtest/gtest.h>
 #include <stdint.h>
 extern "C"
@@ -6,9 +8,10 @@ extern "C"
 #include "../src/alu.h"
 }
 
-class add8_test: public ::testing::TestWithParam<
-    std::tuple<registers, int, int, int>>
-{};
+class add8_test : public ::testing::TestWithParam<
+                      std::tuple<registers, int, int, int>>
+{
+};
 
 TEST_P(add8_test, add8)
 {
@@ -32,13 +35,12 @@ TEST_P(add8_test, add8)
 }
 
 INSTANTIATE_TEST_CASE_P(add8_test_cases,
-    add8_test,
-    testing::Values(
-        std::make_tuple((registers){ .f = 0, .a = 0, .bc = 0, .de = 0, .hl = 0}, 0, 0, 128),
-        std::make_tuple((registers){ .f = 0, .a = 0, .c = 0, .b = 1, .de = 0, .hl = 0}, 0, 1, 0),
-        std::make_tuple((registers){ .f = 0, .a = 1, .c = 0, .b = 1, .de = 0, .hl = 0}, 1, 2, 0),
-        std::make_tuple((registers){ .f = 0, .a = 8, .c = 0, .b = 12, .de = 0, .hl = 0}, 12, 20, 32),
-        std::make_tuple((registers){ .f = 0, .a = 255, .c = 0, .b = 1, .de = 0, .hl = 0}, 1, 0, 176),
-        std::make_tuple((registers){ .f = 0, .a = 240, .c = 0, .b = 50, .de = 0, .hl = 0}, 50, 34, 16),
-        std::make_tuple((registers){ .f = 0, .a = 136, .c = 0, .b = 204, .de = 0, .hl = 0}, 204, 84, 48)
-    ));
+                        add8_test,
+                        testing::Values(
+                            std::make_tuple((registers){.f = 0, .a = 0, .bc = 0, .de = 0, .hl = 0}, 0, 0, 128),
+                            std::make_tuple((registers){.f = 0, .a = 0, .c = 0, .b = 1, .de = 0, .hl = 0}, 0, 1, 0),
+                            std::make_tuple((registers){.f = 0, .a = 1, .c = 0, .b = 1, .de = 0, .hl = 0}, 1, 2, 0),
+                            std::make_tuple((registers){.f = 0, .a = 8, .c = 0, .b = 12, .de = 0, .hl = 0}, 12, 20, 32),
+                            std::make_tuple((registers){.f = 0, .a = 255, .c = 0, .b = 1, .de = 0, .hl = 0}, 1, 0, 176),
+                            std::make_tuple((registers){.f = 0, .a = 240, .c = 0, .b = 50, .de = 0, .hl = 0}, 50, 34, 16),
+                            std::make_tuple((registers){.f = 0, .a = 136, .c = 0, .b = 204, .de = 0, .hl = 0}, 204, 84, 48)));
